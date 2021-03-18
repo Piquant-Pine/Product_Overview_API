@@ -6,9 +6,9 @@ USE sdc;
 
 CREATE TABLE Products (
   product_id INT AUTO_INCREMENT,
-  name VARCHAR(100) NOT NULL,
-  slogan VARCHAR(100) NOT NULL,
-  description VARCHAR(100) NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  slogan VARCHAR(200) NOT NULL,
+  description VARCHAR(500) NOT NULL,
   category VARCHAR(100) NOT NULL,
   default_price DECIMAL(20, 2) NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -24,24 +24,27 @@ CREATE TABLE Features (
   feature_id INT AUTO_INCREMENT,
   feature VARCHAR(100),
   value VARCHAR(100),
-  PRIMARY KEY(feature_id)
+  product_id INT NOT NULL,
+  PRIMARY KEY(feature_id),
+  FOREIGN KEY(product_id) REFERENCES Products(product_id) ON DELETE CASCADE
 );
 -- Will we be given any IDs in the csv file? should we use those ids as our primary key or should we generate own ids through auto_increment for primary keys
 -- Do we need a primary unique ID in addition to each foreign key id?
-CREATE TABLE Products_Features (
-  product_feature_id INT AUTO_INCREMENT,
-  product_id INT NOT NULL,
-  feature_id INT NOT NULL,
-  PRIMARY KEY(product_feature_id),
-  FOREIGN KEY(product_id) REFERENCES Products(product_id) ON DELETE CASCADE,
-  FOREIGN KEY(feature_id) REFERENCES Features(feature_id) ON DELETE CASCADE
-);
+-- CREATE TABLE Features (
+--   product_feature_id INT AUTO_INCREMENT,
+--   product_id INT NOT NULL,
+--   feature_id INT NOT NULL,
+--   PRIMARY KEY(product_feature_id),
+--   FOREIGN KEY(product_id) REFERENCES Products(product_id) ON DELETE CASCADE,
+--   FOREIGN KEY(feature_id) REFERENCES Features(feature_id) ON DELETE CASCADE
+-- );
 
 CREATE TABLE Styles (
   style_id INT AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
   original_price DECIMAL(20, 2) NOT NULL,
-  default_ TINYINT DEFAULT 0,
+  sale_price DECIMAL(20, 2) DEFAULT NULL,
+  default_style TINYINT DEFAULT 0,
   product_id INT NOT NULL,
   PRIMARY KEY(style_id),
   FOREIGN KEY(product_id) REFERENCES Products(product_id) ON DELETE CASCADE
