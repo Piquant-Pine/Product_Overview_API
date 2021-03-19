@@ -11,8 +11,6 @@ CREATE TABLE Products (
   description VARCHAR(500) NOT NULL,
   category VARCHAR(100) NOT NULL,
   default_price DECIMAL(20, 2) NOT NULL,
-  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY(product_id)
 );
 
@@ -78,4 +76,4 @@ CREATE TABLE Related_Product (
   FOREIGN KEY(product_id) REFERENCES Products(product_id) ON DELETE CASCADE
 );
 
-
+-- constraint relationship UNIQUE KEY (product_id, related_id)
