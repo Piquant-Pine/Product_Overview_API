@@ -14,10 +14,6 @@ CREATE TABLE Products (
   PRIMARY KEY(product_id)
 );
 
--- INSERT INTO Products(name, slogan, description, category, default_price) VALUES (
---   'harry potter', 'you a wizard harry', 'thriller genre', 'literature', 10343.2031
--- );
-
 CREATE TABLE Features (
   feature_id INT,
   product_id INT NOT NULL,
