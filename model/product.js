@@ -138,8 +138,24 @@ const getStylesByProductId = (productId, callback) => {
  });
 }
 
+const getProductRelatedById = (productId, callback) => {
+  const queryRelated = `select * from Related_Product where current_product_id=${Number(productId)} `;
+  db.query(queryRelated, (err, relatedResults) => {
+    if (err) {
+      callback(err)
+    } else {
+      let relatedProduct = [];
+      for (let i = 0; i < relatedResults.length; i++) {
+        relatedProduct.push(relatedResults[i].related_product_id);
+      }
+      callback(null, relatedProduct)
+    }
+ });
+}
+
 module.exports = {
   getProducts: getProducts,
   getProductById: getProductById,
-  getStylesByProductId: getStylesByProductId
+  getStylesByProductId: getStylesByProductId,
+  getProductRelatedById: getProductRelatedById
 }
