@@ -22,16 +22,6 @@ CREATE TABLE Features (
   PRIMARY KEY(feature_id),
   FOREIGN KEY(product_id) REFERENCES Products(product_id) ON DELETE CASCADE
 );
--- Will we be given any IDs in the csv file? should we use those ids as our primary key or should we generate own ids through auto_increment for primary keys
--- Do we need a primary unique ID in addition to each foreign key id?
--- CREATE TABLE Features (
---   product_feature_id INT AUTO_INCREMENT,
---   product_id INT NOT NULL,
---   feature_id INT NOT NULL,
---   PRIMARY KEY(product_feature_id),
---   FOREIGN KEY(product_id) REFERENCES Products(product_id) ON DELETE CASCADE,
---   FOREIGN KEY(feature_id) REFERENCES Features(feature_id) ON DELETE CASCADE
--- );
 
 CREATE TABLE Styles (
   style_id INT,
@@ -67,7 +57,6 @@ CREATE TABLE Related_Product (
   id INT,
   current_product_id INT NOT NULL,
   related_product_id INT NOT NULL,
-
   PRIMARY KEY(id),
   FOREIGN KEY(related_product_id) REFERENCES Products(product_id) ON DELETE CASCADE,
   FOREIGN KEY(current_product_id) REFERENCES Products(product_id) ON DELETE CASCADE

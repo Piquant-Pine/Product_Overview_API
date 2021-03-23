@@ -26,7 +26,19 @@ const getProductById = (req, res) => {
   })
 }
 
+const getStylesByProductId = (req, res) => {
+  const productId= req.params.product_id;
+  productModel.getStylesByProductId(productId, (err, results) => {
+    if (err) {
+      res.status(400).send('can not get products');
+    } else {
+      res.status(200).send(results)
+    }
+  })
+}
+
 module.exports = {
   getAllProducts: getAllProducts,
-  getProductById: getProductById
+  getProductById: getProductById,
+  getStylesByProductId: getStylesByProductId
 }

@@ -15,7 +15,7 @@ const path = require('path');
 // const styles = require('./csv/styles.etl.js');
 // const skus = require('./csv/skus.etl.js');
 
-app.use('/products', router)
+app.use('/', router)
 
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
