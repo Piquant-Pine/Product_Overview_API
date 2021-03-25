@@ -17,6 +17,10 @@ const path = require('path');
 
 app.use('/products', router)
 
+app.get('/test', (req, res) => {
+  res.send('testing potato')
+})
+
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 });

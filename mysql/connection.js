@@ -7,6 +7,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
   if (err) {
+    console.log('TESTING ERROR CONNECTION')
     console.log(err)
     return;
   }
