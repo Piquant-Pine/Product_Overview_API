@@ -8,6 +8,7 @@ const getAllProducts = (req, res) => {
   const {pageNum, countNum} = options;
   productModel.getProducts(options, (err, results) => {
     if (err) {
+      console.log(err)
       res.status(400).send('can not get products');
     } else {
       res.status(200).send(results)

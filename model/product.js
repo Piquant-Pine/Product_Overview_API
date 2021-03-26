@@ -3,7 +3,7 @@ const helper = require('./helper.js');
 
 const getProducts = (options, callback) => {
   const {min, max} = helper.determineMinAndMaxCount(options);
-  const queryString = `select * from products limit ${min},${max};`
+  const queryString = `select * from Products limit ${min},${max};`
    db.query(queryString, (err, results) => {
       if (err) {
         callback(err)
@@ -100,28 +100,29 @@ const getStylesByProductId = (productId, callback) => {
     SELECT * FROM styles WHERE product_id = 721
   ), photo AS (
     SELECT
-      GROUP_CONCAT(photos.url) AS url,
-      GROUP_CONCAT(photos.thumbnail_url) AS thumbnail_url,
-      photos.style_id AS style_id
-      FROM photos
+      GROUP_CONCAT(Photos.url) AS url,
+      GROUP_CONCAT(Photos.thumbnail_url) AS thumbnail_url,
+      Photos.style_id AS style_id
+      FROM Photos
        JOIN styles
        USING (style_id)
-      GROUP BY photos.style_id
+      GROUP BY Photos.style_id
   ), skus AS (
     SELECT
-      GROUP_CONCAT(SKUS.SKU_id) AS sku_ids,
+      GROUP_CONCAT(SKUs.SKU_id) AS sku_ids,
       GROUP_CONCAT(SIZE) AS sizes,
       GROUP_CONCAT(quantity) AS quantities,
-      SKUS.style_id AS style_id
-      FROM SKUS
+      SKUs.style_id AS style_id
+      FROM SKUs
        JOIN styles
        USING (style_id)
-       GROUP BY SKUS.style_id
+       GROUP BY SKUs.style_id
   )
   SELECT * FROM styles INNER JOIN photo, skus WHERE photo.style_id = styles.style_id AND skus.style_id = styles.style_id;`;
 
   db.query(styleQuery, (err, styleResults) => {
     if (err) {
+      console.log(err)
       callback(err)
     } else {
       const styleData = helper.destructureStyleObj(styleResults);
