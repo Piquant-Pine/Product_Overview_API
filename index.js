@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 const connection = require('./mysql/connection.js')
 const app = express();
 const fs = require('fs');

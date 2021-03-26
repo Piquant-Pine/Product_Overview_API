@@ -8,3 +8,4 @@
 /csv10Clean
 *.pem
 *.sh
+.env

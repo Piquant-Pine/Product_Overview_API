@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startdev": "nodemon ./index.js",
-    "restart-schema" : "mysql -u root < ./mysql/schema.sql;",
+    "restart-schema": "mysql -u root < ./mysql/schema.sql;",
     "db": "mysql -u root"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7",
