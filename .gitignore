@@ -11,3 +11,4 @@
 .env
 newrelic.js
 *.log
+*.txt

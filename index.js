@@ -9,6 +9,9 @@ const router = require('./router/router.js');
 const PORT = 3000;
 const path = require('path');
 
+// serving loader.io static file
+app.use(express.static('public'));
+
 // require('./csv10/styles.etl.js');
 // Seeding Data (uncomment to run)
 // require('./csv/styles.etl.js')
