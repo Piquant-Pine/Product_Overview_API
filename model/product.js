@@ -97,7 +97,7 @@ const getStylesByProductId = (productId, callback) => {
 
   // Option 3
   const styleQuery = `WITH styles AS (
-    SELECT * FROM styles WHERE product_id = 721
+    SELECT * FROM styles WHERE product_id = 100000
   ), photo AS (
     SELECT
       GROUP_CONCAT(Photos.url) AS url,
