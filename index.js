@@ -1,5 +1,6 @@
-const express = require('express');
 require('dotenv').config()
+require('newrelic');
+const express = require('express');
 const connection = require('./mysql/connection.js')
 const app = express();
 const fs = require('fs');

@@ -9,3 +9,5 @@
 *.pem
 *.sh
 .env
+newrelic.js
+*.log
