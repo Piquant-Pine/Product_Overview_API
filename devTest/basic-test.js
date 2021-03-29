@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { sleep } from 'k6';
 
 export let options = {
-  vus: 500,
+  vus: 800,
   duration: '5s'
 }
 
@@ -32,7 +32,7 @@ export let options = {
 
 export default function () {
   try {
-    let res = http.get('http://localhost:3000/products/9090/related');
+    let res = http.get('http://localhost:3000/products/71/related');
     console.log(`RESPONSE TIME: ${res.timings.duration} ms`)
     sleep(1);
   } catch (error) {

@@ -33,71 +33,8 @@ const getProductById = (productId, callback) => {
 }
 
 const getStylesByProductId = (productId, callback) => {
-  //
-  // const styleQuery = `select * from styles where product_id=14037;`
-  // const styleQuery= `
-  //  SELECT * FROM Styles
-  //  INNER JOIN SKUs USING (style_id)
-  //  INNER JOIN Photos USING (style_id)
-  //  WHERE style_id IN (
-  //    SELECT style_id FROM styles WHERE product_id=14037
-  //  )
-  //  GROUP BY style_id
-  //  `;
-
-  // Option 2
-  // const styleQuery = `WITH styles AS (
-  //   SELECT * FROM styles WHERE product_id = 14037
-  // ), photo AS (
-  //   SELECT
-  //     GROUP_CONCAT(photos.url) AS pic,
-  //     GROUP_CONCAT(photos.thumbnail_url) AS thic,
-  //     photos.style_id AS extra
-  //     FROM photos
-  //      JOIN styles
-  //      ON photos.style_id = styles.style_id
-  //     GROUP BY photos.style_id
-  // ), skuss AS (
-  //   SELECT
-  //     GROUP_CONCAT(SKUS.SKU_id) AS skuId,
-  //     GROUP_CONCAT(SIZE) AS skuSize,
-  //     GROUP_CONCAT(quantity) AS skuQuantity,
-  //     SKUS.style_id AS extra
-  //     FROM SKUS
-  //      JOIN styles
-  //      ON SKUS.style_id = styles.style_id
-  //      GROUP BY SKUS.style_id
-  // )
-  // SELECT * FROM styles INNER JOIN photo, skuss WHERE photo.extra = styles.style_id AND skuss.extra = styles.style_id;`
-
-  // OPTION 3
-  // const styleQuery = `WITH styles AS (
-  //   SELECT * FROM styles WHERE product_id = 14037
-  // ), photo AS (
-  //   SELECT
-  //     GROUP_CONCAT(photos.url) AS url,
-  //     GROUP_CONCAT(photos.thumbnail_url) AS thumbnail_url,
-  //     photos.style_id AS style_id
-  //     FROM photos
-  //      JOIN styles
-  //      ON photos.style_id = styles.style_id
-  //     GROUP BY photos.style_id
-  // ), skuss AS (
-  //   SELECT
-  //     GROUP_CONCAT(SKUS.SKU_id) AS sku_id,
-  //     GROUP_CONCAT(SIZE) AS size,
-  //     GROUP_CONCAT(quantity) AS quantity,
-  //     SKUS.style_id AS style_id
-  //     FROM SKUS
-  //      JOIN styles
-  //      ON SKUS.style_id = styles.style_id
-  //      GROUP BY SKUS.style_id
-  // )
-  // SELECT * FROM styles INNER JOIN photo, skuss WHERE photo.style_id = styles.style_id AND skuss.style_id = styles.style_id;`
-
-  // Option 3
   const styleQuery = `WITH styles AS (
-    SELECT * FROM styles WHERE product_id = 100000
+    SELECT * FROM styles WHERE product_id = ${productId}
   ), photo AS (
     SELECT
       GROUP_CONCAT(Photos.url) AS url,
@@ -126,8 +63,6 @@ const getStylesByProductId = (productId, callback) => {
       callback(err)
     } else {
       const styleData = helper.destructureStyleObj(styleResults);
-      // const photoSkuQuery = `select p.url, p.thumbnail_url, s.size, s.quantity from photos p inner join skus s on (p.style_id = s.style_id) where s.style_id=65504;`
-      // const skuQuery = `select size, quantity from Skus where style_id=65504;`
       let productObj = {
         product_id: productId,
         results: [
