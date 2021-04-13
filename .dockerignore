@@ -1,9 +1,0 @@
-.gitignore
-csv
-csv10
-csv10Clean
-csv100
-csvClean
-csvInvalid
-node_modules
-DockerFile
