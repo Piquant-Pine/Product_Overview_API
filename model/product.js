@@ -55,7 +55,7 @@ const getStylesByProductId = (productId, callback) => {
        USING (style_id)
        GROUP BY SKUs.style_id
   )
-  SELECT * FROM styles INNER JOIN photo, skus WHERE photo.style_id = styles.style_id AND skus.style_id = styles.style_id;`;
+  SELECT * FROM styles INNER JOIN photo, skus WHERE photo.style_id = styles.style_id AND skus.style_id = styles.style_id;`
 
   db.query(styleQuery, (err, styleResults) => {
     if (err) {
@@ -69,7 +69,7 @@ const getStylesByProductId = (productId, callback) => {
           ...styleData
         ]
       }
-      callback(null, productObj);
+      callback(null, styleData);
     }
  });
 }
