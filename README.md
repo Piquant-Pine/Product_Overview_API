@@ -4,7 +4,7 @@
 - Rebuilt the backend of an e-commerce website to accommodate production level traffic
 - ETL CSV files that contain over 5 million records of products data
 - Created multiple Products API routes that allows the client to get all products, get all styles for one product, and get all related products for one product
-- Utilized common expression tables and composite indexes to handle complex database queries and reduce MySQL query response time from 40ms to 10ms
+- Utilized composite indexes to reduce MySQL query response time from 80ms to 10ms
 - Optimized throughput by horizontal scaling on AWS and implementing NGINX Least Connections load balancing
 
 ### MySQL Database Schema
