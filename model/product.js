@@ -35,25 +35,25 @@ const getProductById = (productId, callback) => {
 const getStylesByProductId = (productId, callback) => {
   const styleQuery = `WITH styles AS (
     SELECT * FROM styles WHERE product_id = ${productId}
-  ), photo AS (
+   ), photo AS (
     SELECT
-      GROUP_CONCAT(Photos.url) AS url,
-      GROUP_CONCAT(Photos.thumbnail_url) AS thumbnail_url,
-      Photos.style_id AS style_id
-      FROM Photos
-       JOIN styles
-       USING (style_id)
-      GROUP BY Photos.style_id
-  ), skus AS (
+      GROUP_CONCAT(url) AS url,
+      GROUP_CONCAT(thumbnail_url) AS thumbnail_url,
+      style_id
+    FROM Photos
+        INNER JOIN styles
+        USING (style_id)
+    GROUP BY style_id
+   ),skus AS (
     SELECT
-      GROUP_CONCAT(SKUs.SKU_id) AS sku_ids,
-      GROUP_CONCAT(SIZE) AS sizes,
+      GROUP_CONCAT(sku_id) AS sku_ids,
+      GROUP_CONCAT(size) AS sizes,
       GROUP_CONCAT(quantity) AS quantities,
-      SKUs.style_id AS style_id
-      FROM SKUs
-       JOIN styles
-       USING (style_id)
-       GROUP BY SKUs.style_id
+      style_id
+    FROM SKUs
+        INNER JOIN styles
+        USING (style_id)
+    GROUP BY style_id
   )
   SELECT * FROM styles INNER JOIN photo, skus WHERE photo.style_id = styles.style_id AND skus.style_id = styles.style_id;`
 
@@ -62,6 +62,7 @@ const getStylesByProductId = (productId, callback) => {
       console.log(err)
       callback(err)
     } else {
+      console.log(styleResults);
       const styleData = helper.destructureStyleObj(styleResults);
       let productObj = {
         product_id: productId,
@@ -69,7 +70,7 @@ const getStylesByProductId = (productId, callback) => {
           ...styleData
         ]
       }
-      callback(null, styleData);
+      callback(null, productObj);
     }
  });
 }
