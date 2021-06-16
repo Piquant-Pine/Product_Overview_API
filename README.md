@@ -8,7 +8,7 @@
 - Optimized throughput by horizontal scaling on AWS and implementing NGINX Least Connections load balancing
 
 ### MySQL Database Schema
-<img src="./productServiceApiSchemaDiagram.png" width="500px">
+<img src="./scehma.png" width="500px">
 
 ### Microservice Architecture
 - 3 Products Service API Servers
